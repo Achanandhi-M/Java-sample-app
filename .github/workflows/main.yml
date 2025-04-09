@@ -12,11 +12,21 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Set up JDK
+      - name: Set up Node.js 20.11.0
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.11.0'
+
+      - name: Set up JDK 17 (Temurin)
         uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'temurin'
+
+      - name: Set up Maven 3.6.3
+        uses: s4u/setup-maven-action@v1.5.0
+        with:
+          maven-version: '3.6.3'
 
       - name: Build spring-petclinic-rest
         working-directory: spring-petclinic/spring-petclinic-rest
@@ -30,4 +40,4 @@ jobs:
       - name: Run Keploy Tests
         working-directory: spring-petclinic/spring-petclinic-rest
         run: |
-          keploy test -c "java -jar target/spring-petclinic-rest-3.0.2.jar" -t test-set-1 --delay 20
+          keploy test -c "java -jar target/spring-petclinic-rest-*.jar" -t test-set-1 --delay 20
