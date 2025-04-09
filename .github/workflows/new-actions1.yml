@@ -34,6 +34,7 @@ jobs:
         run: mvn clean install -DskipTests
 
       - name: Download and Install Keploy
+        working-directory: spring-petclinic/spring-petclinic-rest
         run: |
           curl --silent --location "https://github.com/keploy/keploy/releases/latest/download/keploy_linux_amd64.tar.gz" | tar xz --overwrite -C /tmp
           sudo mkdir -p /usr/local/bin && sudo mv /tmp/keploy /usr/local/bin/keploy
