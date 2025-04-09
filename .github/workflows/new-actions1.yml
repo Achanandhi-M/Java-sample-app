@@ -39,4 +39,4 @@ jobs:
           curl --silent --location "https://github.com/keploy/keploy/releases/latest/download/keploy_linux_amd64.tar.gz" | tar xz --overwrite -C /tmp
           sudo mkdir -p /usr/local/bin && sudo mv /tmp/keploy /usr/local/bin/keploy
           run: |
-          keploy test -c "java -jar target/spring-petclinic-rest-3.0.2.jar" -t test-set-1 --delay 20
+          sudo -E env PATH=$PATH keploy test -c "java -jar target/spring-petclinic-rest-3.0.2.jar" -t test-set-1 --delay 20
